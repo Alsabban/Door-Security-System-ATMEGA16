@@ -60,6 +60,6 @@ void DcMotor_Init(void);
  * Return: None
  *
  */
-void DcMotor_Rotate(DcMotor_State state, uint8 speed);
+void DcMotor_Rotate(DcMotor_State state);
 
 #endif

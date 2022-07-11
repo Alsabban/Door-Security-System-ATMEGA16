@@ -1,9 +1,24 @@
+/******************************************************************************
+ *
+ * Module: I2C
+ *
+ * File Name: i2c.h
+ *
+ * Description: header file for the I2C module driver for AVR microcontrollers
+ *
+ * Author: Youssef Alsabban
+ *
+ *******************************************************************************/
+
 #ifndef I2C_H_
 #define I2C_H_
+
+#include "std_types.h"
 
 /*******************************************************************************
  *                      Preprocessor Macros                                    *
  *******************************************************************************/
+
 /* I2C Status Bits in the TWSR Register */
 #define I2C_START         0x08 /* start has been sent */
 #define I2C_REP_START     0x10 /* repeated start */
@@ -44,7 +59,7 @@ typedef struct {
  *                              Functions Prototypes                           *
  *******************************************************************************/
 
-void I2C_init(I2C_configType* configs);
+void I2C_init(I2C_configType *configs);
 void I2C_start(void);
 void I2C_stop(void);
 void I2C_writeByte(uint8 data);
