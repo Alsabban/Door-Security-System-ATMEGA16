@@ -1,0 +1,11 @@
+13:47:52 **** Incremental Build of configuration Debug for project Final_Project_Front ****
+make all 
+Building target: Final_Project_Front.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Final_Project_Front.map -mmcu=atmega16 -o "Final_Project_Front.elf"  ./src/adc.o ./src/dc_motor.o ./src/gpio.o ./src/i2c.o ./src/lcd.o ./src/lm35_sensor.o ./src/pwm.o ./src/uart.o   
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o:(.init9+0x0): undefined reference to `main'
+make: *** [Final_Project_Front.elf] Error 1
+"make all" terminated with exit code 2. Build might be incomplete.
+
+13:47:52 Build Failed. 2 errors, 0 warnings. (took 323ms)
+
