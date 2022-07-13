@@ -8,6 +8,7 @@ C_SRCS += \
 ../src/dc_motor.c \
 ../src/gpio.c \
 ../src/i2c.c \
+../src/keypad.c \
 ../src/lcd.c \
 ../src/lm35_sensor.c \
 ../src/pwm.c \
@@ -18,6 +19,7 @@ OBJS += \
 ./src/dc_motor.o \
 ./src/gpio.o \
 ./src/i2c.o \
+./src/keypad.o \
 ./src/lcd.o \
 ./src/lm35_sensor.o \
 ./src/pwm.o \
@@ -28,6 +30,7 @@ C_DEPS += \
 ./src/dc_motor.d \
 ./src/gpio.d \
 ./src/i2c.d \
+./src/keypad.d \
 ./src/lcd.d \
 ./src/lm35_sensor.d \
 ./src/pwm.d \

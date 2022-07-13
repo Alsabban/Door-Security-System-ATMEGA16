@@ -1,0 +1,17 @@
+/******************************************************************************
+ *
+ * Module: Timer
+ *
+ * File Name: timers.h
+ *
+ * Description: Header file for the Timer module driver for AVR microcontrollers
+ *
+ * Author: Youssef Alsabban
+ *
+ *******************************************************************************/
+#ifndef TIMERS_H_
+#define TIMERS_H_
+
+
+
+#endif /* TIMERS_H_ */

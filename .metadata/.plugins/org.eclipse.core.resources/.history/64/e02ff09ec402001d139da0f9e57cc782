@@ -11,7 +11,7 @@
  *******************************************************************************/
 
 #include "uart.h"
-#include <avr/io.h> /* To use the UART Registers */
+#include "avr/io.h" /* To use the UART Registers */
 #include "common_macros.h" /* To use the macros like SET_BIT */
 
 /*******************************************************************************
