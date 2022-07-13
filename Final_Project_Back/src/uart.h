@@ -38,7 +38,7 @@ typedef enum{
 
 typedef enum{
 	EMPTY_INT_ENABLE=0x20,EMPTY_INT_DISABLE=0x00
-} UART_UCSRB_TXCIE;
+} UART_UCSRB_UDRIE;
 
 typedef enum{
 	RECEIVE_ENABLE=0x10,RECEIVE_DISABLE=0x00
@@ -70,7 +70,7 @@ typedef enum{
 
 typedef enum{
 	RISING_TxD=0x00, FALLING_TxD=0x01
-};
+}UART_UCSRC_UCPOL;
 
 typedef enum{
 	ucsrc=0x80, ubrrh=0x00
@@ -81,6 +81,7 @@ typedef struct{
 	UART_UCSRA_MPCM multiprocessorMode;
 	UART_UCSRB_RXCIE receiveIntEnable;
 	UART_UCSRB_TXCIE sendIntEnable;
+	UART_UCSRB_UDRIE emptyIntEnable;
 	UART_UCSRB_RXEN receiveEnable;
 	UART_UCSRB_TXEN sendEnable;
 	UART_UCSRB_UCSZ2 nineBitMode;
@@ -89,6 +90,7 @@ typedef struct{
 	UART_UCSRC_USBS stopBits;
 	UART_UCSRC_UPM parityMode;
 	UART_UCSRC_UCSZ bitNumSelect;
+	UART_UCSRC_UCPOL clockPolarity;
 	uint16 baudRate;
 } UART_configType;
 
@@ -103,7 +105,7 @@ typedef struct{
  * 2. Enable the UART.
  * 3. Setup the UART baud rate.
  */
-void UART_init(uint32 baud_rate);
+void UART_init(UART_configType config);
 
 /*
  * Description :
