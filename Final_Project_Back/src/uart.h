@@ -73,9 +73,6 @@ typedef enum {
 	RISING_TxD = 0x00, FALLING_TxD = 0x01
 } UART_UCSRC_UCPOL;
 
-typedef enum {
-	ucsrc = 0x80, ubrrh = 0x00
-} UART_UCSRC_URSEL;
 
 typedef struct {
 	UART_UCSRA_U2X doubleRate;
@@ -86,7 +83,6 @@ typedef struct {
 	UART_UCSRB_RXEN receiveEnable;
 	UART_UCSRB_TXEN sendEnable;
 	UART_UCSRB_UCSZ2 nineBitMode;
-	UART_UCSRC_URSEL registerSelect;
 	UART_UCSRC_UMSEL modeSelect;
 	UART_UCSRC_USBS stopBits;
 	UART_UCSRC_UPM parityMode;
@@ -106,7 +102,7 @@ typedef struct {
  * 2. Enable the UART.
  * 3. Setup the UART baud rate.
  */
-void UART_init(UART_configType config);
+void UART_init(UART_configType* config);
 
 /*
  * Description :

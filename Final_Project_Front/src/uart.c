@@ -4,14 +4,14 @@
  *
  * File Name: uart.c
  *
- * Description: Source file for the UART AVR driver
+ * Description: Source file for the UART driver for AVR microcontrollers
  *
- * Author: Mohamed Tarek
+ * Author: Youssef Alsabban
  *
  *******************************************************************************/
 
 #include "uart.h"
-#include "avr/io.h" /* To use the UART Registers */
+#include <avr/io.h> /* To use the UART Registers */
 #include "common_macros.h" /* To use the macros like SET_BIT */
 
 /*******************************************************************************
@@ -25,23 +25,23 @@
  * 2. Enable the UART.
  * 3. Setup the UART baud rate.
  */
-void UART_init(uint32 baud_rate)
+void UART_init(UART_configType* config)
 {
 	uint16 ubrr_value = 0;
 
 	/* U2X = 1 for double transmission speed */
-	UCSRA = (1<<U2X);
+	UCSRA = (config->doubleRate)|(config->multiprocessorMode);
 
 	/************************** UCSRB Description **************************
 	 * RXCIE = 0 Disable USART RX Complete Interrupt Enable
 	 * TXCIE = 0 Disable USART Tx Complete Interrupt Enable
 	 * UDRIE = 0 Disable USART Data Register Empty Interrupt Enable
 	 * RXEN  = 1 Receiver Enable
-	 * RXEN  = 1 Transmitter Enable
+	 * TXEN  = 1 Transmitter Enable
 	 * UCSZ2 = 0 For 8-bit data mode
 	 * RXB8 & TXB8 not used for 8-bit data mode
 	 ***********************************************************************/ 
-	UCSRB = (1<<RXEN) | (1<<TXEN);
+	UCSRB = (config->receiveEnable)|(config->sendEnable)|(config->receiveIntEnable)|(config->sendIntEnable)|(config->emptyIntEnable)|(config->nineBitMode);
 	
 	/************************** UCSRC Description **************************
 	 * URSEL   = 1 The URSEL must be one when writing the UCSRC
@@ -50,11 +50,10 @@ void UART_init(uint32 baud_rate)
 	 * USBS    = 0 One stop bit
 	 * UCSZ1:0 = 11 For 8-bit data mode
 	 * UCPOL   = 0 Used with the Synchronous operation only
-	 ***********************************************************************/ 	
-	UCSRC = (1<<URSEL) | (1<<UCSZ0) | (1<<UCSZ1); 
-	
+	 ***********************************************************************/
+	UCSRC = (config->bitNumSelect)|(config->modeSelect)|(config->parityMode)|(1<<URSEL)|(config->stopBits)|(config->clockPolarity);
 	/* Calculate the UBRR register value */
-	ubrr_value = (uint16)(((F_CPU / (baud_rate * 8UL))) - 1);
+	ubrr_value = (uint16)(((F_CPU / (config->baudRate * 8UL))) - 1);
 
 	/* First 8 bits from the BAUD_PRESCALE inside UBRRL and last 4 bits in UBRRH*/
 	UBRRH = ubrr_value>>8;

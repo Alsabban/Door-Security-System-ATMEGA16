@@ -20,13 +20,13 @@
  *                                Definitions                                  *
  *******************************************************************************/
 #define LCD_RS_PORT_ID                 PORTD_ID
-#define LCD_RS_PIN_ID                  PIN0_ID
+#define LCD_RS_PIN_ID                  PIN4_ID
 
 #define LCD_RW_PORT_ID                 PORTD_ID
-#define LCD_RW_PIN_ID                  PIN1_ID
+#define LCD_RW_PIN_ID                  PIN5_ID
 
 #define LCD_E_PORT_ID                  PORTD_ID
-#define LCD_E_PIN_ID                   PIN2_ID
+#define LCD_E_PIN_ID                   PIN6_ID
 
 #define LCD_DATA_PORT_ID               PORTC_ID
 

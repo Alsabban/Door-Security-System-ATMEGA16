@@ -37,7 +37,7 @@
  *******************************************************************************/
 
 typedef enum {
-	INT_DISABLE = 0x00, INT_ENABLE = 0x01
+	I2C_INT_DISABLE = 0x00, I2C_INT_ENABLE = 0x01
 } I2C_TWCR_TWIE;
 
 typedef enum {

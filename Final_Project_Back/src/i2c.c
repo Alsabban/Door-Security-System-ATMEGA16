@@ -23,7 +23,7 @@ void I2C_init(I2C_configType *configs) {
 	TWCR = configs->enable | configs->int_enable;
 }
 
-void TWI_start(void) {
+void I2C_start(void) {
 	TWCR |= (1 << TWINT) | (1 << TWSTA) | (1 << TWEN);
 	while (BIT_IS_CLEAR(TWCR, TWINT))
 		;

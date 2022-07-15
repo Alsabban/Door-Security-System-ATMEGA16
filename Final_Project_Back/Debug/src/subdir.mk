@@ -6,6 +6,7 @@
 C_SRCS += \
 ../src/adc.c \
 ../src/dc_motor.c \
+../src/external_eeprom.c \
 ../src/gpio.c \
 ../src/i2c.c \
 ../src/lcd.c \
@@ -18,6 +19,7 @@ C_SRCS += \
 OBJS += \
 ./src/adc.o \
 ./src/dc_motor.o \
+./src/external_eeprom.o \
 ./src/gpio.o \
 ./src/i2c.o \
 ./src/lcd.o \
@@ -30,6 +32,7 @@ OBJS += \
 C_DEPS += \
 ./src/adc.d \
 ./src/dc_motor.d \
+./src/external_eeprom.d \
 ./src/gpio.d \
 ./src/i2c.d \
 ./src/lcd.d \

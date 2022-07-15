@@ -20,7 +20,7 @@
  *******************************************************************************/
 
 /* Keypad configurations for number of rows and columns */
-#define KEYPAD_NUM_COLS                  3
+#define KEYPAD_NUM_COLS                  4
 #define KEYPAD_NUM_ROWS                  4
 
 /* Keypad Port Configurations */

@@ -25,12 +25,12 @@
  * 2. Enable the UART.
  * 3. Setup the UART baud rate.
  */
-void UART_init(UART_configType config)
+void UART_init(UART_configType* config)
 {
 	uint16 ubrr_value = 0;
 
 	/* U2X = 1 for double transmission speed */
-	UCSRA = (config.doubleRate)|(config.multiprocessorMode);
+	UCSRA = (config->doubleRate)|(config->multiprocessorMode);
 
 	/************************** UCSRB Description **************************
 	 * RXCIE = 0 Disable USART RX Complete Interrupt Enable
@@ -41,7 +41,7 @@ void UART_init(UART_configType config)
 	 * UCSZ2 = 0 For 8-bit data mode
 	 * RXB8 & TXB8 not used for 8-bit data mode
 	 ***********************************************************************/ 
-	UCSRB = (config.receiveEnable)|(config.sendEnable)|(config.receiveIntEnable)|(config.sendIntEnable)|(config.emptyIntEnable)|(config.nineBitMode);
+	UCSRB = (config->receiveEnable)|(config->sendEnable)|(config->receiveIntEnable)|(config->sendIntEnable)|(config->emptyIntEnable)|(config->nineBitMode);
 	
 	/************************** UCSRC Description **************************
 	 * URSEL   = 1 The URSEL must be one when writing the UCSRC
@@ -51,9 +51,9 @@ void UART_init(UART_configType config)
 	 * UCSZ1:0 = 11 For 8-bit data mode
 	 * UCPOL   = 0 Used with the Synchronous operation only
 	 ***********************************************************************/
-	UCSRC = (config.bitNumSelect)|(config.modeSelect)|(config.parityMode)|(config.registerSelect)|(config.stopBits)|(config.clockPolarity);
+	UCSRC = (config->bitNumSelect)|(config->modeSelect)|(config->parityMode)|(1<<URSEL)|(config->stopBits)|(config->clockPolarity);
 	/* Calculate the UBRR register value */
-	ubrr_value = (uint16)(((F_CPU / (config.baudRate * 8UL))) - 1);
+	ubrr_value = (uint16)(((F_CPU / (config->baudRate * 8UL))) - 1);
 
 	/* First 8 bits from the BAUD_PRESCALE inside UBRRL and last 4 bits in UBRRH*/
 	UBRRH = ubrr_value>>8;

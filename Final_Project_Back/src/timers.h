@@ -70,7 +70,7 @@ typedef struct {
  *                         Function Prototypes                                 *
  *******************************************************************************/
 
-void TIMER0_init(TIMER0_configType config);
+void TIMER0_init(TIMER0_configType* config);
 void TIMER0_setTimerValue(uint8 newValue);
 void TIMER0_clearTimerValue(void);
 void TIMER0_setCallback(void(*functionPtr)(void));
