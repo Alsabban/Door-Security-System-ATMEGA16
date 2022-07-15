@@ -12,6 +12,7 @@ C_SRCS += \
 ../src/lm35_sensor.c \
 ../src/main.c \
 ../src/pwm.c \
+../src/timers.c \
 ../src/uart.c 
 
 OBJS += \
@@ -23,6 +24,7 @@ OBJS += \
 ./src/lm35_sensor.o \
 ./src/main.o \
 ./src/pwm.o \
+./src/timers.o \
 ./src/uart.o 
 
 C_DEPS += \
@@ -34,6 +36,7 @@ C_DEPS += \
 ./src/lm35_sensor.d \
 ./src/main.d \
 ./src/pwm.d \
+./src/timers.d \
 ./src/uart.d 
 
 

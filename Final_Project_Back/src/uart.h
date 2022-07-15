@@ -1,4 +1,4 @@
- /******************************************************************************
+/******************************************************************************
  *
  * Module: UART
  *
@@ -18,65 +18,66 @@
 /*******************************************************************************
  *                         Types Declaration                                   *
  *******************************************************************************/
-typedef enum{
-	DOUBLE=0x02,
-	NO_DOUBLE=0x00
+typedef enum {
+	DOUBLE = 0x02, NO_DOUBLE = 0x00
 } UART_UCSRA_U2X;
 
-typedef enum{
-	MULTIPROCESSOR=0x01,
-	NORMAL=0x00
+typedef enum {
+	MULTIPROCESSOR = 0x01, NORMAL = 0x00
 } UART_UCSRA_MPCM;
 
-typedef enum{
-	RECEIVE_INT_ENABLE=0x80,RECEIVE_INT_DISABLE=0x00
+typedef enum {
+	RECEIVE_INT_ENABLE = 0x80, RECEIVE_INT_DISABLE = 0x00
 } UART_UCSRB_RXCIE;
 
-typedef enum{
-	SEND_INT_ENABLE=0x40,SEND_INT_DISABLE=0x00
+typedef enum {
+	SEND_INT_ENABLE = 0x40, SEND_INT_DISABLE = 0x00
 } UART_UCSRB_TXCIE;
 
-typedef enum{
-	EMPTY_INT_ENABLE=0x20,EMPTY_INT_DISABLE=0x00
+typedef enum {
+	EMPTY_INT_ENABLE = 0x20, EMPTY_INT_DISABLE = 0x00
 } UART_UCSRB_UDRIE;
 
-typedef enum{
-	RECEIVE_ENABLE=0x10,RECEIVE_DISABLE=0x00
+typedef enum {
+	RECEIVE_ENABLE = 0x10, RECEIVE_DISABLE = 0x00
 } UART_UCSRB_RXEN;
 
-typedef enum{
-	SEND_ENABLE=0x08,SEND_DISABLE=0x00
+typedef enum {
+	SEND_ENABLE = 0x08, SEND_DISABLE = 0x00
 } UART_UCSRB_TXEN;
 
-typedef enum{
-	NINE_BIT_MODE=0x04, OTHER=0x00
+typedef enum {
+	NINE_BIT_MODE = 0x04, OTHER = 0x00
 } UART_UCSRB_UCSZ2;
 
-typedef enum{
-	SYNCHRONOUS=0x40, ASYNCHRONOUS=0x00
+typedef enum {
+	SYNCHRONOUS = 0x40, ASYNCHRONOUS = 0x00
 } UART_UCSRC_UMSEL;
 
-typedef enum{
-	NO_PARITY=0x00, EVEN_PARITY=0x20, ODD_PARITY=0x30
+typedef enum {
+	NO_PARITY = 0x00, EVEN_PARITY = 0x20, ODD_PARITY = 0x30
 } UART_UCSRC_UPM;
 
-typedef enum{
-	STOP_2_BITS=0x08, STOP_1_BIT=0x00
+typedef enum {
+	STOP_2_BITS = 0x08, STOP_1_BIT = 0x00
 } UART_UCSRC_USBS;
 
-typedef enum{
-	EIGHT_BIT_MODE=0x06,SEVEN_BIT_MODE=0x04,SIX_BIT_MODE=0x02, FIVE_BIT_MODE=0x00
+typedef enum {
+	EIGHT_OR_NINE_BIT_MODE = 0x06,
+	SEVEN_BIT_MODE = 0x04,
+	SIX_BIT_MODE = 0x02,
+	FIVE_BIT_MODE = 0x00
 } UART_UCSRC_UCSZ;
 
-typedef enum{
-	RISING_TxD=0x00, FALLING_TxD=0x01
-}UART_UCSRC_UCPOL;
+typedef enum {
+	RISING_TxD = 0x00, FALLING_TxD = 0x01
+} UART_UCSRC_UCPOL;
 
-typedef enum{
-	ucsrc=0x80, ubrrh=0x00
+typedef enum {
+	ucsrc = 0x80, ubrrh = 0x00
 } UART_UCSRC_URSEL;
 
-typedef struct{
+typedef struct {
 	UART_UCSRA_U2X doubleRate;
 	UART_UCSRA_MPCM multiprocessorMode;
 	UART_UCSRB_RXCIE receiveIntEnable;

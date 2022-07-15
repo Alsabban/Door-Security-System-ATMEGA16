@@ -4,9 +4,9 @@
  *
  * File Name: uart.c
  *
- * Description: Source file for the UART AVR driver
+ * Description: Source file for the UART driver for AVR microcontrollers
  *
- * Author: Mohamed Tarek
+ * Author: Youssef Alsabban
  *
  *******************************************************************************/
 
@@ -50,9 +50,8 @@ void UART_init(UART_configType config)
 	 * USBS    = 0 One stop bit
 	 * UCSZ1:0 = 11 For 8-bit data mode
 	 * UCPOL   = 0 Used with the Synchronous operation only
-	 ***********************************************************************/ 	
+	 ***********************************************************************/
 	UCSRC = (config.bitNumSelect)|(config.modeSelect)|(config.parityMode)|(config.registerSelect)|(config.stopBits)|(config.clockPolarity);
-	
 	/* Calculate the UBRR register value */
 	ubrr_value = (uint16)(((F_CPU / (config.baudRate * 8UL))) - 1);
 

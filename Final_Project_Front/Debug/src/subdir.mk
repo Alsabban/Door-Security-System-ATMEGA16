@@ -11,6 +11,7 @@ C_SRCS += \
 ../src/keypad.c \
 ../src/lcd.c \
 ../src/lm35_sensor.c \
+../src/main.c \
 ../src/pwm.c \
 ../src/uart.c 
 
@@ -22,6 +23,7 @@ OBJS += \
 ./src/keypad.o \
 ./src/lcd.o \
 ./src/lm35_sensor.o \
+./src/main.o \
 ./src/pwm.o \
 ./src/uart.o 
 
@@ -33,6 +35,7 @@ C_DEPS += \
 ./src/keypad.d \
 ./src/lcd.d \
 ./src/lm35_sensor.d \
+./src/main.d \
 ./src/pwm.d \
 ./src/uart.d 
 
