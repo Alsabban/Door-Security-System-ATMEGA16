@@ -49,7 +49,7 @@ void LCD_displayCharacter(uint8 data) {
 	_delay_ms(1);
 }
 
-void LCD_displayString(const char * data){
+void LCD_displayString(const uint8 * data){
 	int i=0;
 	while(data[i]!='\0'){
 		LCD_displayCharacter(*(data+i));

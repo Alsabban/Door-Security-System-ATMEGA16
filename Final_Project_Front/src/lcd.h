@@ -88,7 +88,7 @@ void LCD_displayCharacter(uint8 data);
  * Returns: None
  */
 
-void LCD_displayString(const char* data);
+void LCD_displayString(const uint8* data);
 
 /*
  *

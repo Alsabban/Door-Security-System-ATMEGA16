@@ -1,4 +1,4 @@
- /******************************************************************************
+/******************************************************************************
  *
  * Module: KEYPAD
  *
@@ -30,8 +30,8 @@
 #define KEYPAD_FIRST_COLUMN_PIN_ID        PIN4_ID
 
 /* Keypad button logic configurations */
-#define KEYPAD_BUTTON_PRESSED            LOGIC_LOW
-#define KEYPAD_BUTTON_RELEASED           LOGIC_HIGH
+#define KEYPAD_BUTTON_PRESSED            LOGIC_HIGH
+#define KEYPAD_BUTTON_RELEASED           LOGIC_LOW
 
 /*******************************************************************************
  *                      Functions Prototypes                                   *
