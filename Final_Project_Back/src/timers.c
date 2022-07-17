@@ -22,17 +22,19 @@
  *                      Function Declarations                                  *
  *******************************************************************************/
 
-static volatile void (*g_TIMER0_callBackPtr)(void) = NULL_PTR;
+void (*g_TIMER0_callBackPtr)(void);
 
 /*******************************************************************************
  *                      ISR Declaration		                                   *
  *******************************************************************************/
 
 ISR(TIMER0_OVF_vect) {
+	if (g_TIMER0_callBackPtr!=NULL_PTR)
 	(*g_TIMER0_callBackPtr)();
 }
 
 ISR(TIMER0_COMP_vect) {
+	if (g_TIMER0_callBackPtr!=NULL_PTR)
 	(*g_TIMER0_callBackPtr)();
 }
 
@@ -44,7 +46,7 @@ void TIMER0_init(TIMER0_configType * config) {
 	TCNT0 = config->initialValue;
 	TIMSK = config->interruptMask;
 	OCR0 = config->compareValue;
-	TCCR0 = (config->clockSelect) | (config->compareMatchOutputMode) | (config->waveGenerationMode);
+	TCCR0 =(1<<FOC0)| (config->clockSelect) | (config->compareMatchOutputMode) | (config->waveGenerationMode);
 }
 void TIMER0_setTimerValue(uint8 newValue) {
 	TCNT0 = newValue;

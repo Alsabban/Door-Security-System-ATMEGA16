@@ -17,10 +17,10 @@
 
 
 void I2C_init(I2C_configType *configs) {
-	TWBR = configs->brValue;
-	TWSR = configs->prescaler;
-	TWAR = configs->address << 1;
-	TWCR = configs->enable | configs->int_enable;
+	TWBR = (configs->brValue);
+	TWSR = (configs->prescaler);
+	TWAR = ((configs->address) << 1);
+	TWCR = (configs->enable) | (configs->int_enable);
 }
 
 void I2C_start(void) {

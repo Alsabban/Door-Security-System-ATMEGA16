@@ -29,13 +29,14 @@
  *                         Type Declarations                                   *
  *******************************************************************************/
 
+
 typedef enum {
-	NORMAL_MODE	 = 0x00, PWM_PHASE_CORRECT = 0x08, CTC = 0x40, FAST_PWM = 0x48
+	NORMAL_MODE	 = 0x00, CTC = 0x40
 } TIMER0_TCCR0_WGM;
 
 typedef enum {
 	OC0_DISCONNECTED = 0x00,
-	TOGGLE_OC0_ON_MATCH_NON_PWM = 0x10,
+	TOGGLE_OC0_ON_MATCH = 0x10,
 	CLEAR_OC0_ON_MATCH = 0x20,
 	SET_OC0_ON_MATCH = 0x30
 } TIMER0_TCCR0_COM;
@@ -53,8 +54,8 @@ typedef enum {
 
 typedef enum {
 	DISABLE_INTERRUPTS = 0,
-	OVERFLOW_INTERRUPT_ENABLE,
-	COMPARE_MATCH_INTERRUPT_ENABLE
+	OVERFLOW_INTERRUPT_ENABLE=0x01,
+	COMPARE_MATCH_INTERRUPT_ENABLE=0x02
 } TIMER0_TIMSK;
 
 typedef struct {

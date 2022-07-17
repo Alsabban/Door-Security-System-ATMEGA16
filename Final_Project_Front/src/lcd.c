@@ -97,7 +97,7 @@ void LCD_displayStringRowColumn(uint8 row,uint8 col,const char *Str)
  */
 void LCD_integerToString(int data)
 {
-   char buff[16]; /* String to hold the ascii result */
+   unsigned char buff[16]; /* String to hold the ascii result */
    itoa(data,buff,10); /* Use itoa C function to convert the data to its corresponding ASCII value, 10 for decimal */
    LCD_displayString(buff); /* Display the string */
 }
