@@ -142,15 +142,15 @@ void openDoor(void) {
 	timerTicks = 0;
 	TIMER0_init(&TIMER0_config);
 	DcMotor_Rotate(CLOCKWISE);
-	while (timerTicks < 60)
+	while (timerTicks < 59)
 		;
 	timerTicks = 0;
 	DcMotor_Rotate(STOP);
-	while (timerTicks < 20)
+	while (timerTicks < 11)
 		;
 	DcMotor_Rotate(ANTICLOCKWISE);
 	timerTicks = 0;
-	while (timerTicks < 60)
+	while (timerTicks < 59)
 		;
 	DcMotor_Rotate(STOP);
 	TIMER0_deinit();
