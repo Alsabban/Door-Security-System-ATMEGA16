@@ -1,3 +1,19 @@
+/******************************************************************************
+ *
+ * Module: HMI for Door Lock System
+ *
+ * File Name: main.c
+ *
+ * Description: Source file for the HMI for the Door Lock Control System
+ *
+ * Author: Youssef Alsabban
+ *
+ *******************************************************************************/
+
+
+/*******************************************************************************
+ *                      		Includes	                                   *
+ *******************************************************************************/
 #include "uart.h"
 #include "lcd.h"
 #include "keypad.h"
@@ -5,6 +21,9 @@
 #include <util/delay.h>
 #include "buzzer.h"
 
+/*******************************************************************************
+ *                      	Define Macros	                                   *
+ *******************************************************************************/
 #define MC_READY 0x10
 #define DIFFERENT_PASSWORDS 0x01
 #define CHANGE_SUCCESS 0x02
@@ -12,26 +31,41 @@
 #define RIGHT_PASSWORD 0x04
 #define PASSWORD_SIZE 6
 
-unsigned char password[PASSWORD_SIZE + 1];
-unsigned char confirmPassword[PASSWORD_SIZE + 1];
-
-void newPassword(char *str, char *confirm);
-uint8 changePassword(void);
-void enterPassword(char *str);
-uint8 sendPassword(void);
-void loggedIn(void);
+/*******************************************************************************
+ *                      Configuration Structs                                  *
+ *******************************************************************************/
 
 UART_configType UART_config = { DOUBLE, NORMAL, RECEIVE_INT_DISABLE,
 		SEND_INT_DISABLE, EMPTY_INT_DISABLE, RECEIVE_ENABLE, SEND_ENABLE, OTHER,
 		ASYNCHRONOUS, STOP_1_BIT, NO_PARITY, EIGHT_OR_NINE_BIT_MODE, RISING_TxD,
 		9600 };
 
+/*******************************************************************************
+ *                      Global Variables	                                   *
+ *******************************************************************************/
+unsigned char password[PASSWORD_SIZE + 1];
+unsigned char confirmPassword[PASSWORD_SIZE + 1];
 uint8 false_counter = 0;
+
+/*******************************************************************************
+ *                      Functions Prototypes                                   *
+ *******************************************************************************/
+void newPassword(char *str, char *confirm);
+uint8 changePassword(void);
+void enterPassword(char *str);
+uint8 sendPassword(void);
+void loggedIn(void);
+void intruderAlert(void);
+
+/*******************************************************************************
+ *                      	Main Function	                                   *
+ *******************************************************************************/
 
 int main(void) {
 	UART_init(&UART_config);
 	LCD_init();
 	BUZZER_init();
+	/* First password */
 	while (1) {
 		newPassword(password, confirmPassword);
 		if (changePassword())
@@ -39,15 +73,11 @@ int main(void) {
 	}
 
 	while (1) {
+		/* Password was entered wrong three consecutive times */
 		if (false_counter >= 3) {
-			BUZZER_on();
-			LCD_CLEAR_SCREEN();
-			LCD_moveCursor(0, 0);
-			LCD_displayString("INTRUDER!!!");
-			_delay_ms(60000);
-			BUZZER_off();
-			false_counter = 0;
+			intruderAlert();
 		}
+		/* Ask for password */
 		enterPassword(password);
 		if (sendPassword()) {
 			loggedIn();
@@ -56,6 +86,15 @@ int main(void) {
 	}
 
 }
+
+/*******************************************************************************
+ *                      Function Definitions                                   *
+ *******************************************************************************/
+
+/* Description:
+ * Asks user to type a password twice on the keypad and save each time in a different
+ * string to be sent to and compared by the control unit
+ */
 void newPassword(char *str, char *confirm) {
 	LCD_CLEAR_SCREEN();
 	LCD_moveCursor(0, 0);
@@ -84,6 +123,11 @@ void newPassword(char *str, char *confirm) {
 	}
 	confirm[PASSWORD_SIZE] = '#';
 }
+
+/* Description:
+ * User enters the password on the keypad, password is saved to a string to be sent
+ * later to the control unit.
+ */
 void enterPassword(char *str) {
 	LCD_CLEAR_SCREEN();
 	LCD_moveCursor(0, 0);
@@ -98,6 +142,15 @@ void enterPassword(char *str) {
 	}
 	str[PASSWORD_SIZE] = '#';
 }
+
+/* Description:
+ * HMI sends both passwords to the control unit to be compared. The function then receives
+ * a byte indicating whether the password change was successful or not.
+ *
+ * Returns:
+ * 1: Successful password change
+ * 0: Unsuccessful password change
+ */
 uint8 changePassword(void) {
 	while (UART_recieveByte() != MC_READY) {
 	}
@@ -115,6 +168,14 @@ uint8 changePassword(void) {
 
 }
 
+/* Description:
+ * HMI sends the password to the control unit to be checked. Receives a byte indicating
+ * whether the password was correct or incorrect.
+ *
+ * Returns:
+ * 1: Password was correct
+ * 0: Password Incorrect
+ */
 uint8 sendPassword(void) {
 	while (UART_recieveByte() != MC_READY) {
 	}
@@ -129,6 +190,11 @@ uint8 sendPassword(void) {
 	}
 }
 
+/* Description:
+ * Asks the user to chose between opening the door ('+') or changing the password ('-').
+ * Function disregards any keypad press other than the '+' or '-' buttons. Either characters
+ * are sent to the control unit and the control unit reacts as requested.
+ */
 void loggedIn(void) {
 
 	while (UART_recieveByte() != MC_READY) {
@@ -146,7 +212,9 @@ void loggedIn(void) {
 			if (var == '+') {
 				LCD_CLEAR_SCREEN();
 				LCD_moveCursor(0, 0);
-				LCD_displayString("Openning...");
+				LCD_displayString("Opening...");
+
+				/* Wait till door finishes opening */
 				while (UART_recieveByte() != MC_READY) {
 				}
 			} else if (var == '-') {
@@ -160,5 +228,20 @@ void loggedIn(void) {
 		}
 	}
 
+}
+
+
+/*Description:
+ * Turns on the buzzer and stops on an LCD message "INTRUDER!!!" for a minute then resets
+ * the false password count.
+ */
+void intruderAlert(void){
+	BUZZER_on();
+	LCD_CLEAR_SCREEN();
+	LCD_moveCursor(0, 0);
+	LCD_displayString("INTRUDER!!!");
+	_delay_ms(60000);
+	BUZZER_off();
+	false_counter = 0;
 }
 

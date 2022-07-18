@@ -22,13 +22,14 @@
 #define BUZZER_PORT_ID PORTD_ID
 #define BUZZER_PIN PIN7_ID
 
-
-
 /*******************************************************************************
  *							function Declaration							   *
  ******************************************************************************/
+/* Set the buzzer pin as an output pin */
 void BUZZER_init(void);
+/* Turn buzzer on by setting pin to 1 */
 void BUZZER_on(void);
+/* Turn buzzer off by setting pin to 0 */
 void BUZZER_off(void);
 
 

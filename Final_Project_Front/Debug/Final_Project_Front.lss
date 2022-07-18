@@ -173,7 +173,7 @@ Disassembly of section .text:
      120:	98 17       	cp	r25, r24
      122:	09 f4       	brne	.+2      	; 0x126 <_fpadd_parts+0x3c>
      124:	28 c1       	rjmp	.+592    	; 0x376 <_fpadd_parts+0x28c>
-     126:	a1 ec       	ldi	r26, 0xC1	; 193
+     126:	a0 ec       	ldi	r26, 0xC0	; 192
      128:	b0 e0       	ldi	r27, 0x00	; 0
      12a:	25 c1       	rjmp	.+586    	; 0x376 <_fpadd_parts+0x28c>
      12c:	84 30       	cpi	r24, 0x04	; 4
@@ -602,7 +602,7 @@ Disassembly of section .text:
      48e:	29 f4       	brne	.+10     	; 0x49a <__stack+0x3b>
      490:	92 30       	cpi	r25, 0x02	; 2
      492:	81 f4       	brne	.+32     	; 0x4b4 <__stack+0x55>
-     494:	81 ec       	ldi	r24, 0xC1	; 193
+     494:	80 ec       	ldi	r24, 0xC0	; 192
      496:	90 e0       	ldi	r25, 0x00	; 0
      498:	c6 c0       	rjmp	.+396    	; 0x626 <__stack+0x1c7>
      49a:	92 30       	cpi	r25, 0x02	; 2
@@ -858,7 +858,7 @@ Disassembly of section .text:
      694:	23 17       	cp	r18, r19
      696:	09 f0       	breq	.+2      	; 0x69a <__divsf3+0x68>
      698:	6e c0       	rjmp	.+220    	; 0x776 <__divsf3+0x144>
-     69a:	61 ec       	ldi	r22, 0xC1	; 193
+     69a:	60 ec       	ldi	r22, 0xC0	; 192
      69c:	70 e0       	ldi	r23, 0x00	; 0
      69e:	6e c0       	rjmp	.+220    	; 0x77c <__divsf3+0x14a>
      6a0:	34 30       	cpi	r19, 0x04	; 4
@@ -1381,7 +1381,7 @@ Disassembly of section .text:
      ac2:	8a 95       	dec	r24
      ac4:	d2 f7       	brpl	.-12     	; 0xaba <__clzsi2+0x76>
      ac6:	f7 01       	movw	r30, r14
-     ac8:	e7 53       	subi	r30, 0x37	; 55
+     ac8:	e8 53       	subi	r30, 0x38	; 56
      aca:	ff 4f       	sbci	r31, 0xFF	; 255
      acc:	80 81       	ld	r24, Z
      ace:	28 1b       	sub	r18, r24
@@ -5336,7 +5336,7 @@ int main(void) {
     231e:	0f be       	out	0x3f, r0	; 63
     2320:	cd bf       	out	0x3d, r28	; 61
 	UART_init(&UART_config);
-    2322:	89 ec       	ldi	r24, 0xC9	; 201
+    2322:	88 ec       	ldi	r24, 0xC8	; 200
     2324:	91 e0       	ldi	r25, 0x01	; 1
     2326:	0e 94 31 15 	call	0x2a62	; 0x2a62 <UART_init>
 	LCD_init();
@@ -6359,7 +6359,7 @@ void loggedIn(void) {
     299e:	80 e0       	ldi	r24, 0x00	; 0
     29a0:	60 e0       	ldi	r22, 0x00	; 0
     29a2:	0e 94 c7 10 	call	0x218e	; 0x218e <LCD_moveCursor>
-				LCD_displayString("Openning...");
+				LCD_displayString("Opening...");
     29a6:	85 eb       	ldi	r24, 0xB5	; 181
     29a8:	90 e0       	ldi	r25, 0x00	; 0
     29aa:	0e 94 9c 10 	call	0x2138	; 0x2138 <LCD_displayString>
