@@ -11,7 +11,6 @@
  *******************************************************************************/
 #include "dc_motor.h"
 #include "gpio.h"
-#include "pwm.h"
 
 void DcMotor_Init(void){
 	/* Set defined motor pins as output pins */
